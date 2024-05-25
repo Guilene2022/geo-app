@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('scan code with sonar scanner') {
             steps {
-                withSonarQubeEnv('sonarqube') {
+                withSonarQubeEnv('sonarQube') {
                     sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Guilene2022_geo-app'
                 }
             }
