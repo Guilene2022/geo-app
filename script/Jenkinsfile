@@ -16,7 +16,6 @@ pipeline {
                 sh 'mvn clean install package'
             }
         }
-        stage
         stage('upload artifact to artifactory') {
             steps {
                 sh 'curl -uadmin:AP8jo9ZFcrg81cCsXRTSHJL87ta -T target/bio*.jar "http://54.237.57.0:8081/artifactory/geo-app/"'
