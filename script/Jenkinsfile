@@ -1,25 +1,17 @@
 pipeline {
     agent any
-    tools {
-        maven 'M2_HOME' // Ensure 'Maven' matches the Maven tool name configured in Jenkins
+    tools{
+        maven 'M2_HOME'
     }
-    stages {
-        stage('scan code with sonar scanner') {
-            steps {
-                withSonarQubeEnv('sonarqube') {
-                    sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Guilene2022_geo-app'
+    stages{
+        stage("maven"){
+            steps{
+                sh 'maven clean validate compile install test package'
                 }
-            }
+            
         }
-        stage('maven build tool') {
-            steps {
-                sh 'mvn clean install package'
-            }
-        }
-        stage('upload artifact to artifactory') {
-            steps {
-                sh 'curl -uadmin:AP8jo9ZFcrg81cCsXRTSHJL87ta -T target/bio*.jar "http://54.237.57.0:8081/artifactory/geo-app/"'
-            }
-        }
+
     }
+
 }
+   
