@@ -1,14 +1,11 @@
 pipeline {
     agent any
-    tools {
-        maven 'maven' // This should match the name given in Global Tool Configuration
-    }
     stages {
         stage('Build') {
             steps {
                 script {
-                    // Use the configured Maven tool
-                    sh 'mvn clean validate compile install test package'
+                    // Use the absolute path to Maven
+                    sh '/path/to/maven/bin/mvn clean validate compile install test package'
                 }
             }
         }
