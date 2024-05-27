@@ -4,6 +4,16 @@ pipeline {
         maven 'M2_HOME'
     }
     stages{
+        stage('Sonar-scan'){
+            steps {
+                 withSonarQubeEnv('sonarQube') { // Ensure this matches the SonarQube configuration name
+                    sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
+                    -Dsonar.projectKey=Guilene2022_geo-app'
+                 }
+
+            }
+
+        }
         stage('maven'){
             steps{
                 sh 'mvn clean validate compile install test package'
@@ -18,15 +28,7 @@ pipeline {
 
             }
         }
-        stage('SonarQube Analysis'){
-            steps {
-                 withSonarQubeEnv('sonarQube') { // Ensure this matches the SonarQube configuration name
-                    sh 'mvn sonar:sonar'
-                 }
-
-            }
-
-        }
+        
 
     }
 
