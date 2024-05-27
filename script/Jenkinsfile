@@ -1,17 +1,16 @@
 pipeline {
     agent any
-    tools{
-        maven 'M2_HOME'
+    tools {
+        maven 'Maven' // This should match the name given in Global Tool Configuration
     }
-    stages{
-        stage("maven"){
-            steps{
-                sh 'maven clean validate compile install test package'
+    stages {
+        stage('Build') {
+            steps {
+                script {
+                    // Use the configured Maven tool
+                    sh 'mvn clean validate compile install test package'
                 }
-            
+            }
         }
-
     }
-
 }
-   
