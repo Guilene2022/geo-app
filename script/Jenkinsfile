@@ -5,7 +5,7 @@ pipeline {
             steps {
                 script {
                     // Use the absolute path to Maven
-                    sh '/opt/maven/bin mvn clean validate compile install test package'
+                    sh '/opt/maven/ mvn clean validate compile install test package'
                 }
             }
         }
