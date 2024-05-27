@@ -1,13 +1,17 @@
 pipeline {
     agent any
-    stages {
-        stage('Build') {
-            steps {
-                script {
-                    // Use the absolute path to Maven
-                    sh '/opt/maven/ mvn clean validate compile install test package'
-                }
-            }
-        }
+    tools{
+        maven 'M2_HOME'
     }
+    stages{
+        stage('maven'){
+            steps{
+                sh 'mvn clean validate compile install test package'
+                }
+            
+        }
+
+    }
+
 }
+   
