@@ -18,6 +18,15 @@ pipeline {
 
             }
         }
+        stage('SonarQube Analysis'){
+            steps {
+                 withSonarQubeEnv('sonarqube') { // Ensure this matches the SonarQube configuration name
+                    sh 'mvn sonar:sonar'
+                 }
+
+            }
+
+        }
 
     }
 
